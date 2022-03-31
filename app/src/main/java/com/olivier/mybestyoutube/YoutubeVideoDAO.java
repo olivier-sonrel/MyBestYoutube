@@ -1,5 +1,6 @@
 package com.olivier.mybestyoutube;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -56,5 +57,18 @@ public class YoutubeVideoDAO extends DAO{
         cursor.close();
 
         return youtubeVideos;
+    }
+
+    public void add(YoutubeVideo youtubeVideo){
+        open();
+
+        ContentValues value = new ContentValues();
+
+        value.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TITLE, youtubeVideo.getTitle());
+        value.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_DESCRIPTION, youtubeVideo.getDescription());
+        value.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_URL, youtubeVideo.getUrl());
+        value.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_CATEGORY, youtubeVideo.getCategory());
+
+        db.insert(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TABLE_NAME, null, value);
     }
 }
