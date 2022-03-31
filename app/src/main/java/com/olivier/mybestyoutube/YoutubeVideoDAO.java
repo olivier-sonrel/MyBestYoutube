@@ -88,4 +88,13 @@ public class YoutubeVideoDAO extends DAO{
         close();
     }
 
+    public void delete(YoutubeVideo youtubeVideo) {
+        open();
+
+        db.delete(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TABLE_NAME, YoutubeVideoDBHelper.YOUTUBE_VIDEO_KEY + " = ?",
+                new String[] { String.valueOf(youtubeVideo.getId())});
+
+        close();
+    }
+
 }
