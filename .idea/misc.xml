@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_add_youtube_video.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/spinner_item.xml" value="0.15942028985507245" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.49609375" />
       </map>
     </option>
