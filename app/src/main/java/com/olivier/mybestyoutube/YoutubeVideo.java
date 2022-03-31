@@ -7,13 +7,13 @@ public class YoutubeVideo {
     private Long id;
     private String title;
     private String description;
-    private URL url;
+    private String url;
     private String category;
 
     public YoutubeVideo() {
     }
 
-    public YoutubeVideo(String title, String description, URL url, String category) {
+    public YoutubeVideo(String title, String description, String url, String category) {
         this.title = title;
         this.description = description;
         this.url = url;
@@ -44,11 +44,11 @@ public class YoutubeVideo {
         this.description = description;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(URL url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
