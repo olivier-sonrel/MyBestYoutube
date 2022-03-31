@@ -71,4 +71,21 @@ public class YoutubeVideoDAO extends DAO{
 
         db.insert(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TABLE_NAME, null, value);
     }
+
+    public void update(YoutubeVideo youtubeVideo) {
+        open();
+
+        ContentValues values = new ContentValues();
+
+        values.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TITLE, youtubeVideo.getTitle());
+        values.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_DESCRIPTION, youtubeVideo.getDescription());
+        values.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_URL, youtubeVideo.getUrl());
+        values.put(YoutubeVideoDBHelper.YOUTUBE_VIDEO_CATEGORY, youtubeVideo.getCategory());
+
+        db.update(YoutubeVideoDBHelper.YOUTUBE_VIDEO_TABLE_NAME, values, YoutubeVideoDBHelper.YOUTUBE_VIDEO_KEY + " = ?",
+                new String[] { String.valueOf(youtubeVideo.getId())});
+
+        close();
+    }
+
 }
