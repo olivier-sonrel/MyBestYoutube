@@ -3,7 +3,9 @@ package com.olivier.mybestyoutube;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AddYoutubeVideoActivity extends AppCompatActivity {
+    private static final int RESULT_OK = 1;
+    private static final int RESULT_CANCELED = 0;
 
     private EditText etTitle;
     private EditText etDescription;
@@ -23,8 +27,9 @@ public class AddYoutubeVideoActivity extends AppCompatActivity {
     private Button btnCancel;
     private Context context;
     private String[] categories;
+    private YoutubeVideo youtubeVideo;
 
-    public static String[] getCategories(){
+    public static String[] getCategories() {
         return new String[]{
                 "Sport",
                 "Music",
@@ -51,9 +56,49 @@ public class AddYoutubeVideoActivity extends AppCompatActivity {
 
         final List<String> categoriesList = new ArrayList<>(Arrays.asList(categories));
 
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context , R.layout.spinner_item , categoriesList);
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, R.layout.spinner_item, categoriesList);
 
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spCategory.setAdapter(spinnerArrayAdapter);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = etTitle.getText().toString();
+                String description = etDescription.getText().toString();
+                String url = etUrl.getText().toString();
+                String category = spCategory.getSelectedItem().toString();
+
+                if (
+                        title.length() >= 1 &&
+                        description.length() >= 1 &&
+                        url.length() >= 1 &&
+                        category.length() >= 1
+                ) {
+
+                    youtubeVideo = new YoutubeVideo(title, description, url, category);
+
+                    YoutubeVideoDAO youtubeVideoDAO = new YoutubeVideoDAO(context);
+                    youtubeVideoDAO.add(youtubeVideo);
+
+                    Intent resultIntent = new Intent();
+                    /* TODO resultIntent.putExtra("youtube_video", youtubeVideo);*/
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+                } else {
+                    /* TODO Toast*/
+                }
+
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                setResult(RESULT_CANCELED, resultIntent);
+                finish();
+            }
+        });
     }
 }
