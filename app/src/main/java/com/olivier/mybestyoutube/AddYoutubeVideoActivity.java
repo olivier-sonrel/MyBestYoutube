@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,7 +87,11 @@ public class AddYoutubeVideoActivity extends AppCompatActivity {
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 } else {
-                    /* TODO Toast*/
+                    CharSequence text = "Put something in the bazar, please!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
 
             }
