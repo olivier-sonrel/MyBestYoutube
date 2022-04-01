@@ -51,35 +51,20 @@ public class MainActivity extends AppCompatActivity {
         YoutubeVideoDAO youtubeVideoDAO = new YoutubeVideoDAO(context);
         List<YoutubeVideo> youtubeVideoList = youtubeVideoDAO.list();
 
-        String text = "";
-        for( YoutubeVideo youtubeVideo : youtubeVideoList){
-            text += String.format(" %s / %s \n", youtubeVideo.getTitle(), youtubeVideo.getDescription());
-        }
-        tvYoutubeVideo.setText(text);
-
-/*        YoutubeVideoAdapter youtubeVideoAdapter = new YoutubeVideoAdapter(youtubeVideoList*//*, new TodoAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Todo todo) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                startActivity(intent);
-            }
-        }*//*
-        );*/
+        YoutubeVideoAdapter youtubeVideoAdapter = new YoutubeVideoAdapter(youtubeVideoList);
+        recyclerView.setAdapter(youtubeVideoAdapter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvYoutubeVideo = findViewById(R.id.tvYoutubeVideo);
-        /*tvYoutubeVideo.setText(text);*/
+        /*tvYoutubeVideo = findViewById(R.id.tvYoutubeVideo); to test bdd */
 
-/*        recyclerView = findViewById(R.id.rvYoutubeVideo);*//* TODO on call pas le bon main je pense ou c le tvTodos qui est pas du bon type dans les init... *//*
+        recyclerView = findViewById(R.id.rvYoutubeVideo);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-        youtubeVideoAdapter = new YoutubeVideoAdapter(youtubeVideoList);
-        recyclerView.setAdapter(youtubeVideoAdapter);*/
 
 
         context = getApplicationContext();
