@@ -26,9 +26,8 @@ public class YoutubeVideoAdapter extends RecyclerView.Adapter<YoutubeVideoAdapte
         }
     }
 
-    public YoutubeVideoAdapter(List<YoutubeVideo> youtubeVideoList/*, TODO OnItemClickListener onItemClickListener*/) {
+    public YoutubeVideoAdapter(List<YoutubeVideo> youtubeVideoList) {
         this.youtubeVideoList = youtubeVideoList;
-        /* TODO this.onItemClickListener = onItemClickListener;*/
     }
 
 
@@ -45,14 +44,6 @@ public class YoutubeVideoAdapter extends RecyclerView.Adapter<YoutubeVideoAdapte
         holder.tvTitle.setText(youtubeVideo.getTitle());
         holder.tvDescription.setText(youtubeVideo.getDescription());
 
-/*  TODO      holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null){
-                    onItemClickListener.onItemClick(youtubeVideo);
-                }
-            }
-        });*/
     }
 
     @Override
@@ -60,7 +51,5 @@ public class YoutubeVideoAdapter extends RecyclerView.Adapter<YoutubeVideoAdapte
         return youtubeVideoList.size();
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(YoutubeVideo youtubeVideo);
-    }
+
 }

@@ -83,7 +83,7 @@ public class AddYoutubeVideoActivity extends AppCompatActivity {
                     youtubeVideoDAO.add(youtubeVideo);
 
                     Intent resultIntent = new Intent();
-                    /* TODO resultIntent.putExtra("youtube_video", youtubeVideo);*/
+
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 } else {
